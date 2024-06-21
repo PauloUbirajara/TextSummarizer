@@ -1,8 +1,8 @@
-from time import sleep
 from typing import Dict
 
-from enums.summarizer_enum import SummarizerEnum
 from fastapi import APIRouter
+
+from enums.summarizer_enum import SummarizerEnum
 from models.get_summarizers_response import (GetSummarizersResponse,
                                              SummarizerOption)
 from models.post_summarizer_text_request import PostSummarizerTextRequest
@@ -20,7 +20,7 @@ class SummarizerRouter(IAPIRouter):
     def create(self) -> APIRouter:
         router = APIRouter(prefix="/summarizers")
 
-        @router.get('/')
+        @router.get('')
         def get_summarizers() -> GetSummarizersResponse:
             return GetSummarizersResponse(
                 summarizers=[

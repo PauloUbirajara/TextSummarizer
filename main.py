@@ -17,7 +17,9 @@ supported_summarizers: Dict[SummarizerEnum, ISummarizerAdapter] = {
 
 app = FastAPI()
 app.include_router(
-    SummarizerRouter(supported_summarizers=supported_summarizers)
+    prefix="/api",
+    tags=["summarizer"],
+    router=SummarizerRouter(supported_summarizers=supported_summarizers)
     .create()
 )
 app.add_middleware(
@@ -27,5 +29,4 @@ app.add_middleware(
     allow_origins=['*'],
     allow_headers=["*"],
 )
-
 app.mount('/', StaticFiles(directory="static", html=True), name="static")

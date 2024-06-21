@@ -1,5 +1,5 @@
-const POST_SUMMARIZER_TEXT_URL = "http://localhost:8000/summarizers/text";
-const GET_SUMMARIZERS_URL = "http://localhost:8000/summarizers";
+const POST_SUMMARIZER_TEXT_URL = "http://localhost:8000/api/summarizers/text";
+const GET_SUMMARIZERS_URL = "http://localhost:8000/api/summarizers";
 
 const form = document.querySelector("form");
 const refreshSummarizersBtn = document.querySelector("#refresh-summarizers");
