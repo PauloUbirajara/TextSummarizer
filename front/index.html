@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Text Summarizer</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script defer src="./index.js"></script>
+  </head>
+  <body>
+    <main>
+      <button id="refresh-summarizers">Refresh</button>
+      <form method="POST">
+        <div class="top">
+          <label for="summarizer">Summarizer Model:
+            <select name="summarizer" required>
+              <option value="" selected disabled>Select a model</option>
+              <option value="0">LexRank</option>
+              <option value="1">LSA</option>
+              <option value="2">KL</option>
+              <option value="3">TextRank</option>
+              <option value="4">SumBasic</option>
+            </select>
+          </label>
+          <label for="rows">Rows:
+            <input type="number" min=1 name="rows" value="1" required>
+          </label>
+        </div>
+
+        <label for="content">Text:</label>
+        <textarea rows="5" cols="5" id="content" name="content" required></textarea>
+
+        <textarea rows="5" cols="5" id="summary" placeholder="The summary will appear here" disabled></textarea>
+        <input type="submit" value="Summarize Text!"></input>
+      </form>	
+    </main>
+  </body>
+</html>
