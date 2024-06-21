@@ -2,20 +2,20 @@ const POST_SUMMARIZER_TEXT_URL = "http://localhost:8000/api/summarizers/text";
 const GET_SUMMARIZERS_URL = "http://localhost:8000/api/summarizers";
 
 const form = document.querySelector("form");
-const formSubmitBtn = document.querySelector("form input[type=submit]");
+const formSubmitBtn = document.querySelector("form button[type=submit]");
 const refreshSummarizersBtn = document.querySelector("#refresh-summarizers");
 const summaryTextarea = document.querySelector("#summary");
 const supportedSummarizers = document.querySelector("select");
 
-function changeLoadingState(domElem, state) {
+function changeLoadingState(domElem, className, state) {
   // Changes the Bulma CSS library skeleton property
   if (state === false) {
-    domElem.classList.remove("is-skeleton");
+    domElem.classList.remove(className);
     domElem.disabled = false;
     return;
   }
   if (state === true) {
-    domElem.classList.add("is-skeleton");
+    domElem.classList.add(className);
     domElem.disabled = true;
     return;
   }
@@ -39,8 +39,8 @@ function onGetSummarizersResult(json) {
 }
 
 function getSupportedSummarizers() {
-  changeLoadingState(supportedSummarizers, true);
-  changeLoadingState(refreshSummarizersBtn, true);
+  changeLoadingState(supportedSummarizers, "is-loading", true);
+  changeLoadingState(refreshSummarizersBtn, "is-loading", true);
   fetch(GET_SUMMARIZERS_URL, {})
     .then((res) => {
       if (res.ok) return res.json();
@@ -48,8 +48,8 @@ function getSupportedSummarizers() {
     })
     .then(onGetSummarizersResult)
     .finally(() => {
-      changeLoadingState(supportedSummarizers, false);
-      changeLoadingState(refreshSummarizersBtn, false);
+      changeLoadingState(supportedSummarizers, "is-loading", false);
+      changeLoadingState(refreshSummarizersBtn, "is-loading", false);
     });
 }
 
@@ -61,8 +61,8 @@ function onSummarizeText(e) {
   const summarizer = formData.get("summarizer");
   const language = formData.get("language");
 
-  changeLoadingState(summaryTextarea, true);
-  changeLoadingState(formSubmitBtn, true);
+  changeLoadingState(summaryTextarea, "is-skeleton", true);
+  changeLoadingState(formSubmitBtn, "is-loading", true);
   fetch(POST_SUMMARIZER_TEXT_URL, {
     method: "POST",
     headers: {
@@ -76,8 +76,8 @@ function onSummarizeText(e) {
     })
     .then(onPostSummarizerTextResult)
     .finally(() => {
-      changeLoadingState(summaryTextarea, false);
-      changeLoadingState(formSubmitBtn, false);
+      changeLoadingState(summaryTextarea, "is-skeleton", false);
+      changeLoadingState(formSubmitBtn, "is-loading", false);
     });
 }
 

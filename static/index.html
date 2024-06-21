@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <title>Text Summarizer</title>
     <link rel="stylesheet" href="./styles.css">
-    <script defer src="./index.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script defer src="./index.js"></script>
   </head>
   <body>
-    <main>
-      <form method="POST">
-        <div class="hero">
-          <h1 class="title">Text Summarizer</h1>
-          <div class="hero-body">
+    <main class="container p-5">
+      <div class="hero is-small content">
+        <h1 class="title">Text Summarizer</h1>
+      </div>
+      <form method="POST" class="content">
+        <div class="summarizer-settings content">
+          <div class="notification">
             <h2 class="subtitle">Settings</h2>
-            <div class="summarizer-settings">
-              <label for="summarizer">Summarizer Model: </label>
+
+            <div class="content">
+              <label for="summarizer" class="label">Summarizer Model: </label>
               <select class="input" name="summarizer" required>
                 <option value="" selected disabled>Select a model</option>
               </select>
-              <span class="button is-terciary is-display-block" id="refresh-summarizers">
-                <i class="fa-solid fa-arrows-rotate"></i>
-              </span>
-              <label for="rows">Rows: </label>
+              <button class="button is-display-inline-block" id="refresh-summarizers">
+                <i class="fa-solid fa-arrows-rotate" ></i>
+              </button>
+            </div>
+            <div class="content">
+              <label for="rows" class="label">Rows: </label>
               <input type="number" class="input" min=1 name="rows" value="1" required>
-              <span></span>
-              <label for="language">Input Language:</label>
+            </div>
+            <div class="content">
+              <label for="language" class="label">Input Language:</label>
               <select class="input" name="language" required>
                 <option value="" selected disabled>Select a language</option>
                 <option value="portuguese">Portuguese</option>
@@ -36,12 +42,24 @@
           </div>
         </div>
 
-        <label for="content">Text:</label>
-        <textarea class="textarea" rows="5" cols="5" id="content" name="content" placeholder="The original text should be here" required></textarea>
+        <div class="content">
+          <label class="label" for="content">Text:</label>
+          <textarea
+              class="textarea"
+              rows="5"
+              cols="5"
+              id="content"
+              name="content"
+              placeholder="The original text should be here"
+              required
+              ></textarea>
+        </div>
 
-        <label for="summary">Summarized Text:</label>
-        <textarea class="textarea" rows="5" cols="5" id="summary" placeholder="The summary will appear here" readonly></textarea>
-        <input class="button is-primary" type="submit" value="Summarize Text!"></input>
+        <div class="content">
+          <label class="label" for="summary">Summarized Text:</label>
+          <textarea class="textarea" rows="5" cols="5" id="summary" placeholder="The summary will appear here" readonly></textarea>
+        </div>
+        <button class="button is-primary" type="submit">Summarize Text!</button>
       </form>	
     </main>
   </body>

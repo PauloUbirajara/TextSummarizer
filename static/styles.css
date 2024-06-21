@@ -1,35 +1,10 @@
-html, body{
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-main {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 15px;
-  align-items:center;
-}
-
-.summarizer-settings {
-  width: 100%;
+.summarizer-settings .notification{
   display: grid;
-  gap: 10px;
-  grid-template-columns: auto 1fr auto;
-  justify-content: center;
-  align-items: center;
 }
 
-form {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: stretch;
-  justify-content: center;
-  width: 100%;
-  max-width: 800px;
-  align-self: center;
+.summarizer-settings .notification .content{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 5px;
 }
