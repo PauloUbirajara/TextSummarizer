@@ -8,16 +8,18 @@ main {
   height: 100%;
   display: flex;
   justify-content: center;
-  background: blue;
   flex-direction: column;
   gap: 15px;
   align-items:center;
 }
 
-.top {
+.summarizer-settings {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto 1fr auto;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
@@ -30,9 +32,4 @@ form {
   width: 100%;
   max-width: 800px;
   align-self: center;
-  background: red;
-}
-
-form input[type=submit] {
-  padding: 15px;
 }
