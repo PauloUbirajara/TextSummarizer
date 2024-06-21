@@ -6,3 +6,4 @@ class PostSummarizerTextRequest(BaseModel):
     rows: int
     content: str
     summarizer: SummarizerEnum
+    language: str

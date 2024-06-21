@@ -1,3 +1,0 @@
-class ISummarizerAdapter:
-    def summarize(self, text: str, sentence_count: int) -> list[str]:
-        ...

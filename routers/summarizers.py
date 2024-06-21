@@ -22,7 +22,6 @@ class SummarizerRouter(IAPIRouter):
 
         @router.get('/')
         def get_summarizers() -> GetSummarizersResponse:
-            sleep(1)
             return GetSummarizersResponse(
                 summarizers=[
                     SummarizerOption(name=str(summ), code=key)
@@ -40,7 +39,8 @@ class SummarizerRouter(IAPIRouter):
 
             summary = summarizer.summarize(
                 text=body.content,
-                sentence_count=body.rows
+                sentence_count=body.rows,
+                language=body.language
             )
             return PostSummarizerTextResponse(summary=summary)
 

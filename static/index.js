@@ -44,13 +44,14 @@ function onSummarizeText(e) {
   const content = formData.get("content");
   const rows = parseInt(formData.get("rows"));
   const summarizer = formData.get("summarizer");
+  const language = formData.get("language");
 
   fetch(POST_SUMMARIZER_TEXT_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ content, summarizer, rows }),
+    body: JSON.stringify({ content, summarizer, rows, language }),
   })
     .then((res) => {
       if (res.ok) return res.json();
