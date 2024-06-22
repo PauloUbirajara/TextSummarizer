@@ -10,6 +10,7 @@ from usecases.summarizer_adapter.base import ISummarizerAdapter
 from usecases.summarizer_adapter.kl import KLSummarizerAdapter
 from usecases.summarizer_adapter.lex_rank import LexRankSummarizerAdapter
 from usecases.summarizer_adapter.lsa import LSASummarizerAdapter
+from usecases.summarizer_adapter.sum_basic import SumBasicSummarizerAdapter
 from usecases.summarizer_adapter.text_rank import TextRankSummarizerAdapter
 
 supported_summarizers: Dict[SummarizerEnum, ISummarizerAdapter] = {
@@ -17,6 +18,7 @@ supported_summarizers: Dict[SummarizerEnum, ISummarizerAdapter] = {
     SummarizerEnum.LSA: LSASummarizerAdapter(),
     SummarizerEnum.KL: KLSummarizerAdapter(),
     SummarizerEnum.TEXT_RANK: TextRankSummarizerAdapter(),
+    SummarizerEnum.SUM_BASIC: SumBasicSummarizerAdapter(),
 }
 
 app = FastAPI()
