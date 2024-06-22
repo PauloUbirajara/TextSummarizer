@@ -23,7 +23,7 @@ function changeLoadingState(domElem, className, state) {
 
 function onPostSummarizerTextResult(json) {
   const { summary } = json;
-  summaryTextarea.value = summary.join("\n");
+  summaryTextarea.value = summary.join("\n\n");
 }
 
 function onGetSummarizersResult(json) {
