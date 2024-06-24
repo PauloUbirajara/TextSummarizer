@@ -1,5 +1,6 @@
 # Text Summarizer
-[demo.webm](https://github.com/PauloUbirajara/TextSummarizer/assets/49159843/b53088d0-8ffc-477e-9205-ad195cc2c5af)
+[demo.webm](https://github.com/PauloUbirajara/TextSummarizer/assets/49159843/7b4ec7ee-9484-461b-b2d5-73fa5481ba93)
+
 > Summarize texts using Python
 
 ## Setup
