@@ -1,3 +1,4 @@
+import logging
 from typing import Dict
 
 from fastapi import FastAPI
@@ -13,6 +14,13 @@ from usecases.summarizer_adapter.lsa import LSASummarizerAdapter
 from usecases.summarizer_adapter.sum_basic import SumBasicSummarizerAdapter
 from usecases.summarizer_adapter.text_rank import TextRankSummarizerAdapter
 
+logger = logging.Logger('summarizer')
+handler = logging.FileHandler(filename='summarizer.log')
+formatter = logging.Formatter(fmt="[%(asctime)s] %(levelname)s %(message)s")
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
+
 supported_summarizers: Dict[SummarizerEnum, ISummarizerAdapter] = {
     SummarizerEnum.LEX_RANK: LexRankSummarizerAdapter(),
     SummarizerEnum.LSA: LSASummarizerAdapter(),
@@ -21,11 +29,16 @@ supported_summarizers: Dict[SummarizerEnum, ISummarizerAdapter] = {
     SummarizerEnum.SUM_BASIC: SumBasicSummarizerAdapter(),
 }
 
-app = FastAPI()
+app = FastAPI(debug=True)
+
+
 app.include_router(
     prefix="/api",
     tags=["summarizer"],
-    router=SummarizerRouter(supported_summarizers=supported_summarizers)
+    router=SummarizerRouter(
+        supported_summarizers=supported_summarizers,
+        logger=logger
+    )
     .create()
 )
 app.add_middleware(
