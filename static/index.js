@@ -1,5 +1,6 @@
-const POST_SUMMARIZER_TEXT_URL = "http://localhost:8000/api/summarizers/text";
-const GET_SUMMARIZERS_URL = "http://localhost:8000/api/summarizers";
+const baseUrl = window.location.href;
+const POST_SUMMARIZER_TEXT_URL = baseUrl + "api/summarizers/text";
+const GET_SUMMARIZERS_URL = baseUrl + "api/summarizers";
 
 const form = document.querySelector("form");
 const formSubmitBtn = document.querySelector("form button[type=submit]");
@@ -44,9 +45,10 @@ function getSupportedSummarizers() {
   fetch(GET_SUMMARIZERS_URL, {})
     .then((res) => {
       if (res.ok) return res.json();
-      throw new Error("Failed to get supported summarizers");
+      throw new Error(`Failed to get supported summarizers: ${res.text()}`);
     })
     .then(onGetSummarizersResult)
+    .catch(alert)
     .finally(() => {
       changeLoadingState(supportedSummarizers, "is-loading", false);
       changeLoadingState(refreshSummarizersBtn, "is-loading", false);
@@ -72,9 +74,10 @@ function onSummarizeText(e) {
   })
     .then((res) => {
       if (res.ok) return res.json();
-      throw new Error("Failed to post summarizer text");
+      throw new Error(`Failed to post summarizer text: ${res.text()}`);
     })
     .then(onPostSummarizerTextResult)
+    .catch(alert)
     .finally(() => {
       changeLoadingState(summaryTextarea, "is-skeleton", false);
       changeLoadingState(formSubmitBtn, "is-loading", false);
