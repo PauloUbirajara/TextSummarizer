@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Summarizer</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
@@ -19,9 +20,9 @@
             <h2 class="subtitle">Settings</h2>
 
             <div class="content">
-              <label for="summarizer" class="label">Summarizer Model: </label>
+              <label for="summarizer" class="label">Summarizer: </label>
               <select class="input" name="summarizer" required>
-                <option value="" selected disabled>Select a model</option>
+                <option value="" selected disabled>Select a summarizer</option>
               </select>
               <button class="button is-display-inline-block" id="refresh-summarizers">
                 <i class="fa-solid fa-arrows-rotate" ></i>
@@ -29,21 +30,27 @@
             </div>
             <div class="content">
               <label for="rows" class="label">Rows: </label>
-              <input type="number" class="input" min=1 name="rows" value="1" required>
+              <div class="is-flex is-flex-direction-column">
+                <input type="number" class="input" min=1 name="rows" value="1" required>
+                <p class="help">Amount of rows the summarizer should return. Minimum of 1 row.</p>
+              </div>
             </div>
             <div class="content">
-              <label for="language" class="label">Input Language:</label>
+              <label for="language" class="label">Language:</label>
+              <div class="is-flex is-flex-direction-column">
               <select class="input" name="language" required>
                 <option value="" selected disabled>Select a language</option>
                 <option value="portuguese">Portuguese</option>
                 <option value="english">English</option>
               </select>
+                <p class="help">Language of original text. Choose the appropriate one for better results.</p>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="content">
-          <label class="label" for="content">Text:</label>
+          <label class="label" for="content">Original Text:</label>
           <textarea
               class="textarea"
               rows="5"
@@ -56,8 +63,8 @@
         </div>
 
         <div class="content">
-          <label class="label" for="summary">Summarized Text:</label>
-          <textarea class="textarea" rows="5" cols="5" id="summary" placeholder="The summary will appear here" readonly></textarea>
+          <label class="label" for="summary">Summarized Result:</label>
+          <textarea class="textarea" rows="5" cols="5" id="summary" placeholder="The summarized result will appear here" readonly></textarea>
         </div>
         <button class="button is-primary" type="submit">Summarize Text!</button>
       </form>	
